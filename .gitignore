@@ -1,8 +1,13 @@
-# LaTeX compilation artifacts
+# ============================================================================
+# GITIGNORE PER PROGETTI LATEX E TESI DI LAUREA
+# ============================================================================
+
+# --- File ausiliari e di log LaTeX ---
 *.aux
 *.bcf
-*.blg
 *.bbl
+*.blg
+*.brf
 *.fdb_latexmk
 *.fls
 *.lof
@@ -11,7 +16,56 @@
 *.lot
 *.out
 *.run.xml
+*.synctex
+*.synctex(busy)
 *.synctex.gz
 *.toc
-pdfa.xmpi
+*.dvi
+*.xdv
+
+# --- Indici analitici e glossari ---
+*.idx
+*.ilg
+*.ind
+*.glo
+*.gls
+*.glg
+*.glsdefs
+*.ist
+*.nlo
+*.nls
+*.nlg
+
+# --- Metadati PDF/A e XMP ---
+*.xmpi
+*.xmpdata
+
+# --- File di presentazione (Beamer) / Teoremi ---
+*.nav
+*.snm
+*.vrb
+*.thm
+
+# --- Pacchetti specifici (minted, listings, biblatex) ---
+_minted*
+*.pyg
+*-blx.bib
+
+# --- Output finale PDF (opzionale, scommentare se non si vuole tracciare il PDF) ---
 main.pdf
+*.pdf
+
+# --- File temporanei di editor, OS e salvataggio ---
+*-SAVE-ERROR
+*~
+*.swp
+*.swo
+*.bak
+.#*
+#*#
+.DS_Store
+Thumbs.db
+
+# --- Cartelle di configurazione IDE ---
+.vscode/
+.idea/

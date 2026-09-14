@@ -134,6 +134,13 @@
 \renewcommand{\lstlistingname}{Codice}
 \renewcommand{\lstlistlistingname}{Elenco dei codici}
 
+% Pacchetti per la scrittura di pseudocodice e algoritmi formali
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+\floatname{algorithm}{Algoritmo}
+\renewcommand{\algorithmicrequire}{\textbf{Dati in ingresso (Input):}}
+\renewcommand{\algorithmicensure}{\textbf{Dati in uscita (Output):}}
+
 % Pacchetti per collegamenti ipertestuali e riferimenti intelligenti
 \usepackage{hyperref}
 \hypersetup{
@@ -151,8 +158,10 @@
 \Crefname{table}{Tabella}{Tabelle}
 \crefname{equation}{Eq.}{Eq.}
 \Crefname{equation}{Equazione}{Equazioni}
-\crefname{listing}{Listing}{Listing}
-\Crefname{listing}{Listing}{Listing}
+\crefname{listing}{Codice}{Codici}
+\Crefname{listing}{Codice}{Codici}
+\crefname{algorithm}{Alg.}{Alg.}
+\Crefname{algorithm}{Algoritmo}{Algoritmi}
 \crefname{chapter}{Cap.}{Cap.}
 \Crefname{chapter}{Capitolo}{Capitoli}
 \crefname{section}{Sez.}{Sez.}
@@ -205,8 +214,8 @@
     \begin{center}
         \vspace{0.5cm}
     
-        {\large \textbf{UNIVERSITÀ DEGLI STUDI [NOME ATENEO]}} \\
-        {\large \textbf{DIPARTIMENTO DI [NOME DIPARTIMENTO]}} \\
+        {\large \textbf{UNIVERSITÀ DEGLI STUDI DELL'INSUBRIA}} \\
+        {\large \textbf{DIPARTIMENTO DI SCIENZE TEORICHE ED APPLICATE}} \\
         
         \vspace{0.8cm}
         
@@ -215,7 +224,6 @@
         
         \vspace{1.5cm}
     
-        % Sostituire img/logo_insu.jpeg con il logo ufficiale del proprio ateneo
         \includegraphics[width=0.30\columnwidth]{img/logo_insu.jpeg}
         
         \vspace{1.2cm}

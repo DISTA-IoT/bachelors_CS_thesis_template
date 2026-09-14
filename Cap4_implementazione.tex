@@ -65,14 +65,30 @@ Un esempio tipico di organizzazione del codice in un progetto di tesi in Informa
 \label{sec:dettagli-codice}
 % ============================================================================
 
-\textbf{Guida per lo studente:} Non riportare centinaia di righe di codice banale (come getter, setter o parser standard). Inserire unicamente gli snippet essenziali che contengono il cuore algoritmico della tesi.
+\noindent\fbox{
+\parbox{0.96\textwidth}{
+\textbf{\large REGOLA FONDAMENTALE: MAI INSERIRE BLOCCHI GIGANTI DI CODICE!}
+\vspace{0.2cm}\\
+Una tesi di laurea in Informatica \textbf{non è la stampa di un repository GitHub}!
+\begin{itemize}
+    \item \textbf{Cosa NON fare:} È severamente sconsigliato incollare intere classi, file sorgente completi o porzioni da 50--100 righe di codice. Appesantiscono inutilmente la lettura e non aggiungono valore scientifico.
+    \item \textbf{Cosa fare per il codice:} Mostrare \textbf{esclusivamente piccoli snippet mirati (massimo 10--20 righe)}, dedicati a un passaggio algoritmico critico, a un'ottimizzazione essenziale o a una scelta architetturale non banale.
+    \item \textbf{Cosa usare per il resto:} Per spiegare il funzionamento del sistema, privilegiare sempre:
+    \begin{enumerate}
+        \item \textbf{Pseudocodice formale:} Come l'\Cref{alg:decision-process} illustrato nel \Cref{cap:sistema};
+        \item \textbf{Diagrammi architetturali:} Come la \Cref{fig:architettura-esempio} del \Cref{cap:sistema};
+        \item \textbf{Diagrammi di flusso (Flowchart):} Come la \Cref{fig:diagramma-flusso} del \Cref{cap:sistema}.
+    \end{enumerate}
+\end{itemize}
+}
+}
+\vspace{0.4cm}
 
-Ogni listato di codice deve:
+Ogni listato di codice inserito deve:
 \begin{enumerate}
     \item Essere racchiuso nell'ambiente \texttt{\textbackslash begin\{lstlisting\}[language=\dots, caption=\dots, label=\dots]};
-    \item Possedere una didascalia (\texttt{caption}) che descriva brevemente cosa realizza il codice;
-    \item Avere un'etichetta (\texttt{label=\{lst:\dots\}}) per il riferimento incrociato;
-    \item Essere accompagnato da una spiegazione puntuale nel testo che commenta la logica del codice linea per linea.
+    \item Possedere una didascalia sintetica (\texttt{caption}) e un'etichetta (\texttt{label=\{lst:\dots\}});
+    \item Essere sempre commentato nel testo spiegando la logica riga per riga.
 \end{enumerate}
 
 Il \Cref{lst:belief-update} mostra la logica di calcolo dell'errore di predizione e dell'aggiornamento dell'incertezza implementata nel modulo \texttt{BeliefState}:

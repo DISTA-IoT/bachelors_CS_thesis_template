@@ -91,19 +91,21 @@ La \Cref{tab:risultati-confronto} riporta il confronto quantitativo delle presta
 \begin{table}[htbp]
 \centering
 \small
+\caption{Confronto quantitativo delle prestazioni sperimentali tra la soluzione proposta e le configurazioni di baseline.}
+\label{tab:risultati-confronto}
 \renewcommand{\arraystretch}{1.3}
-\begin{tabular}{l c c c c}
+\begin{tabular}{l c c c r}
 \toprule
-\textbf{Configurazione Sistema} & \textbf{Precision} & \textbf{Recall} & \textbf{F1-Score} & \textbf{Latenza (ms)} \\
+& \multicolumn{3}{c}{\textbf{Metriche di Classificazione}} & \multicolumn{1}{c}{\textbf{Efficienza}} \\
+\cmidrule(lr){2-4} \cmidrule(lr){5-5}
+\textbf{Configurazione Testata} & \textbf{Precision} & \textbf{Recall} & \textbf{F1-Score} & \textbf{Latenza (ms)} \\
 \midrule
-Sistema Completo (Proposto)    & \textbf{1.00}      & \textbf{1.00}   & \textbf{1.00}     & \textbf{12.4} \\
-Variante Senza Modello Interno  & 0.42               & 0.65            & 0.51              & 28.1 \\
-Variante Senza Termine Epistemico & 0.88             & 0.72            & 0.79              & 15.6 \\
-Baseline Tradizionale Black-Box & 0.75               & 0.80            & 0.77              & 24.3 \\
+Sistema Completo (Proposto)      & \textbf{1.00}      & \textbf{1.00}   & \textbf{1.00}     & \textbf{12.4} \\
+Variante Senza Modello Interno    & 0.42               & 0.65            & 0.51              & 28.1 \\
+Variante Senza Termine Epistemico & 0.88               & 0.72            & 0.79              & 15.6 \\
+Baseline Tradizionale Black-Box   & 0.75               & 0.80            & 0.77              & 24.3 \\
 \bottomrule
 \end{tabular}
-\caption{Confronto delle prestazioni tra la soluzione proposta e le configurazioni di baseline.}
-\label{tab:risultati-confronto}
 \end{table}
 
 Come si evince dalla \Cref{tab:risultati-confronto}, il sistema completo consegue prestazioni ottimali su tutte le metriche considerate, con un tempo medio di risposta contenuto in circa $12$\,ms.

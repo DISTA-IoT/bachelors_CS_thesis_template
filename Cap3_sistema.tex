@@ -63,6 +63,24 @@ La \Cref{fig:architettura-esempio} illustra lo schema a blocchi dell'architettur
     \label{fig:architettura-esempio}
 \end{figure}
 
+% ----------------------------------------------------------------------------
+\subsection{Esempio di diagramma di flusso (Flowchart)}
+\label{sec:esempi-flowchart}
+% ----------------------------------------------------------------------------
+
+Accanto ai diagrammi architetturali (che mostrano la struttura statica dei moduli), i \textbf{diagrammi di flusso (flowchart)} sono fondamentali per rappresentare visivamente la dinamica temporale, le diramazioni condizionali (\texttt{if-else}) e la sequenza delle operazioni. 
+
+Un diagramma di flusso chiaro \textbf{sostituisce con enorme efficacia lunghe pagine di codice}, permettendo al lettore di cogliere la logica dell'algoritmo in pochi secondi.
+
+La \Cref{fig:diagramma-flusso} illustra il flusso logico decisionale eseguito a ogni passo temporale.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.75\textwidth]{placeholder_flusso.png}
+    \caption{Diagramma di flusso logico per ciascun timestep. Evidenzia la diramazione condizionale a fronte del superamento della soglia di anomalia e la convergenza verso la selezione dell'azione ottima.}
+    \label{fig:diagramma-flusso}
+\end{figure}
+
 
 % ============================================================================
 \section{Componenti e Moduli Software}
@@ -80,32 +98,40 @@ La \Cref{fig:architettura-esempio} illustra lo schema a blocchi dell'architettur
 
 
 % ----------------------------------------------------------------------------
-\subsection{Esempio di inserimento di tabelle con il pacchetto \texttt{booktabs}}
+\subsection{Linee guida ed esempio per la composizione di tabelle scientifiche}
 \label{sec:esempi-tabelle}
 % ----------------------------------------------------------------------------
 
-Nelle pubblicazioni scientifiche e nelle tesi di laurea in Informatica \textbf{non si usano linee verticali nelle tabelle}. Si adottano le linee orizzontali ad alto valore tipografico offerte dal pacchetto \texttt{booktabs}: \texttt{\textbackslash toprule}, \texttt{\textbackslash midrule} e \texttt{\textbackslash bottomrule}.
+Nelle pubblicazioni scientifiche e nelle tesi di laurea in Informatica, le tabelle devono rispettare precisi canoni tipografici:
+\begin{enumerate}
+    \item \textbf{Nessuna linea verticale:} Non usare mai linee verticali (\texttt{|}); rendono la lettura pesante e disordinata;
+    \item \textbf{Pacchetto \texttt{booktabs}:} Usare esclusivamente le tre linee orizzontali ad alto valore tipografico: \texttt{\textbackslash toprule} (inizio), \texttt{\textbackslash midrule} (separatore intestazione) e \texttt{\textbackslash bottomrule} (chiusura);
+    \item \textbf{Allineamento:} Allineare a sinistra (\texttt{l}) i testi descrittivi, al centro (\texttt{c}) i codici o stati, e a destra (\texttt{r}) i valori numerici;
+    \item \textbf{Unità di misura nell'intestazione:} Inserire sempre l'unità di misura (es. ms, km/h, \%) nell'intestazione della colonna, mai ripetuta in ogni singola cella;
+    \item \textbf{Didascalia e posizionamento:} La didascalia (\texttt{\textbackslash caption}) va posizionata preferibilmente \textbf{in alto} per le tabelle, seguita subito dal comando \texttt{\textbackslash label\{tab:\dots\}};
+    \item \textbf{Riferimento obbligatorio:} Ogni tabella deve essere citata nel testo con \texttt{\textbackslash Cref\{tab:\dots\}}.
+\end{enumerate}
 
-Come per le figure, ogni tabella deve avere un \texttt{\textbackslash caption}, una \texttt{\textbackslash label\{tab:\dots\}} ed essere citata nel testo (ad esempio: i parametri principali del sistema sono sintetizzati nella \Cref{tab:parametri-esempio}).
+La \Cref{tab:parametri-esempio} mostra una tabella tipografica standard compilata secondo queste direttive.
 
 \begin{table}[htbp]
 \centering
 \small
-\renewcommand{\arraystretch}{1.3}
-\begin{tabular}{l c l}
-\toprule
-\textbf{Parametro} & \textbf{Valore di Default} & \textbf{Descrizione} \\
-\midrule
-\texttt{NUM\_STEPS}          & 50    & Durata temporale della simulazione a discreti \\
-\texttt{SENSOR\_NOISE}       & 0.05  & Ampiezza del rumore additivo uniforme \\
-\texttt{ANOMALY\_THRESHOLD}  & 0.30  & Soglia sul prediction error per scatenare l'anomalia \\
-\texttt{DEFAULT\_SPEED}      & 10.0  & Velocità di marcia a regime nominale (km/h) \\
-\texttt{REDUCED\_SPEED}      & 4.0   & Velocità cautelativa in caso di alta incertezza \\
-\texttt{STOP\_SPEED}         & 0.0   & Velocità di arresto immediato per sicurezza \\
-\bottomrule
-\end{tabular}
 \caption{Parametri di configurazione del sistema software.}
 \label{tab:parametri-esempio}
+\renewcommand{\arraystretch}{1.3}
+\begin{tabular}{l c r l}
+\toprule
+\textbf{Parametro} & \textbf{Tipo} & \textbf{Default} & \textbf{Descrizione} \\
+\midrule
+\texttt{NUM\_STEPS}          & Intero  & 50    & Durata temporale della simulazione (passi) \\
+\texttt{SENSOR\_NOISE}       & Float   & 0.05  & Ampiezza del rumore additivo uniforme ($\pm$) \\
+\texttt{ANOMALY\_THRESHOLD}  & Float   & 0.30  & Soglia sul prediction error per anomalia \\
+\texttt{DEFAULT\_SPEED}      & Float   & 10.0  & Velocità di marcia nominale (km/h) \\
+\texttt{REDUCED\_SPEED}      & Float   & 4.0   & Velocità cautelativa con alta incertezza (km/h) \\
+\texttt{STOP\_SPEED}         & Float   & 0.0   & Velocità di arresto immediato (km/h) \\
+\bottomrule
+\end{tabular}
 \end{table}
 
 
@@ -138,4 +164,52 @@ La selezione della politica decisionale ottima $\pi^*$ avviene minimizzando la f
 \label{eq:efe-decision}
 \end{equation}
 
-Nel \Cref{cap:Implementazione} verrà esaminata l'implementazione pratica di tali moduli all'interno del codice sorgente.
+
+% ----------------------------------------------------------------------------
+\subsection{Esempio di inserimento di algoritmi in pseudocodice formale}
+\label{sec:esempi-algoritmi}
+% ----------------------------------------------------------------------------
+
+Quando si descrive un procedimento computazionale in modo indipendente dallo specifico linguaggio di programmazione, è preferibile utilizzare lo **pseudocodice formale** tramite i pacchetti \texttt{algorithm} e \texttt{algpseudocode}.
+
+I comandi principali dell'ambiente \texttt{algorithmic} sono:
+\begin{itemize}
+    \item \texttt{\textbackslash Require} e \texttt{\textbackslash Ensure}: Definiscono i dati in ingresso (input/precondizioni) e in uscita (output/postcondizioni);
+    \item \texttt{\textbackslash State}: Introduce un'istruzione elementare o un'assegnazione ($\gets$ ottenuto con \texttt{\textbackslash gets});
+    \item \texttt{\textbackslash If\{cond\} \dots \textbackslash Else \dots \textbackslash EndIf}: Blocchi condizionali;
+    \item \texttt{\textbackslash For\{cond\} \dots \textbackslash EndFor} e \texttt{\textbackslash While\{cond\} \dots \textbackslash EndWhile}: Strutture iterative;
+    \item \texttt{\textbackslash Call\{NomeFunzione\}\{Argomenti\}}: Invocazione di una procedura o metodo;
+    \item \texttt{\textbackslash Comment\{testo\}}: Inserimento di commenti esplicativi a margine.
+\end{itemize}
+
+L'\Cref{alg:decision-process} illustra il ciclo di stima dello stato e decisione ottima eseguito a ogni passo temporale.
+
+\begin{algorithm}[htbp]
+\caption{Ciclo decisionale del controllore Active Inference.}
+\label{alg:decision-process}
+\begin{algorithmic}[1]
+    \Require Osservazione sensoriale $o_t \in \mathbb{R}$, passo temporale $t \in \mathbb{N}$, soglia di anomalia $\theta \in \mathbb{R}^+$
+    \Ensure Azione ottima selezionata $\pi^*$, credenza aggiornata $\hat{s}_t$
+    \vspace{0.15cm}
+    \State $\hat{s}_{\mathrm{pred}} \gets \Call{GenerativeModelPredict}{t}$ \Comment{Predizione dal prior interno}
+    \State $e_t \gets |o_t - \hat{s}_{\mathrm{pred}}|$ \Comment{Calcolo del prediction error}
+    \If{$e_t > \theta$}
+        \State $\mathrm{anomalia} \gets \mathbf{True}$
+        \State $\sigma_t \gets 1.0$ \Comment{Massima incertezza: sensore ritenuto inaffidabile}
+        \State $\hat{s}_t \gets \hat{s}_{\mathrm{pred}}$ \Comment{L'agente si affida al modello generativo}
+    \Else
+        \State $\mathrm{anomalia} \gets \mathbf{False}$
+        \State $\sigma_t \gets 0.05$ \Comment{Incertezza nominale (rumore di fondo)}
+        \State $\hat{s}_t \gets o_t$ \Comment{L'agente acquisisce il dato dal sensore}
+    \EndIf
+    \For{\textbf{ciascuna} politica d'azione $\pi \in \Pi$}
+        \State $\mathrm{val}_{\mathrm{pragmatic}} \gets \Call{ComputePragmaticValue}{\pi, \hat{s}_t}$
+        \State $\mathrm{val}_{\mathrm{epistemic}} \gets \Call{ComputeEpistemicValue}{\pi, \sigma_t}$
+        \State $\mathrm{EFE}(\pi) \gets -\mathrm{val}_{\mathrm{pragmatic}} - \mathrm{val}_{\mathrm{epistemic}}$
+    \EndFor
+    \State $\pi^* \gets \arg\min_{\pi \in \Pi} \mathrm{EFE}(\pi)$ \Comment{Selezione dell'azione che minimizza l'EFE}
+    \State \Return $\pi^*, \hat{s}_t$
+\end{algorithmic}
+\end{algorithm}
+
+Nel \Cref{cap:Implementazione} verrà esaminata l'implementazione concreta di tale algoritmo all'interno del codice Python sorgente.
