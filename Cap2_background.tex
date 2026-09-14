@@ -1,0 +1,116 @@
+% ============================================================================
+% CAPITOLO 2 — STATO DELL'ARTE E BACKGROUND TEORICO
+% ============================================================================
+\chapter{Stato dell'arte e background teorico}
+\label{cap:background}
+
+Questo capitolo introduce i fondamenti concettuali e tecnologici su cui poggia l'intero lavoro di tesi. 
+
+\textbf{Perché la ricerca bibliografica è cruciale?} Studiare la letteratura e analizzare lo stato dell'arte non serve a fare un mero riassunto nozionistico, ma ha uno scopo scientifico fondamentale: \textbf{contaminarsi con i lavori esistenti per capire cosa sta succedendo davvero e formulare la domanda di ricerca corretta}. Ricorda che, su una scala da 1 a 10, la formulazione della domanda giusta \textbf{vale almeno 6}! Una domanda ben posta, specifica e misurabile è il presupposto indispensabile per costruire una tesi solida e fattibile nei tempi a disposizione.
+
+Inoltre, questo capitolo contiene la \textbf{guida operativa dettagliata su come effettuare le citazioni bibliografiche in LaTeX}, specificando i criteri di qualità e le regole formali da rispettare.
+
+
+% ============================================================================
+\section{Guida Operativa alle Citazioni Bibliografiche}
+\label{sec:guida-citazioni}
+% ============================================================================
+
+\noindent\fbox{
+\parbox{0.96\textwidth}{
+\textbf{\large REQUISITO OBBLIGATORIO DELLA TESI: ALMENO 20 CITAZIONI}
+\vspace{0.2cm}\\
+Ogni tesi di laurea in Informatica deve contenere un apparato bibliografico solido e professionale, composto da \textbf{non meno di 20 fonti bibliografiche autorevoli}. Non sono ammesse bibliografie superficiali o costituite prevalentemente da pagine web temporanee.
+}
+}
+\vspace{0.4cm}
+
+\subsection{Criteri di autorevolezza delle fonti}
+Non tutte le fonti hanno lo stesso valore scientifico. Gli studenti devono seguire questa gerarchia di autorevolezza:
+\begin{enumerate}
+    \item \textbf{Articoli in riviste scientifiche peer-reviewed (\texttt{@article}):} Sono le fonti a più alto rigore accademico (ad es. IEEE Transactions, ACM Journals, Nature, Springer, Elsevier). Esempio di articolo citato nel testo: Friston~\cite{friston2010free} o Doshi-Velez e Kim~\cite{doshi2017towards}.
+    \item \textbf{Atti di conferenze internazionali (\texttt{@inproceedings}):} In informatica, le migliori conferenze (IEEE S\&P, ACM CCS, USENIX, NeurIPS, ICSE) hanno tassi di accettazione molto selettivi e rappresentano lo stato dell'arte avanzato (ad es. Liu et al.~\cite{liu2009false}).
+    \item \textbf{Libri di testo accademici e monografie (\texttt{@book}):} Ideali per definizioni formali, algoritmi consolidati e teoremi fondamentali (ad es. Ammann e Offutt~\cite{ammann2016introduction}, Parr et al.~\cite{parr2022active}).
+    \item \textbf{Standard tecnici e normative (\texttt{@techreport}):} Documenti ufficiali emessi da organismi di standardizzazione internazionali come CENELEC, ISO, IEC, IEEE o RFC dell'IETF (ad es. EN 50716~\cite{en50716} ed EN 50128~\cite{en50128}).
+    \item \textbf{Repository software e documentazione ufficiale (\texttt{@misc}):} Da usare con parsimonia per strumenti specifici utilizzati nel progetto, citando sempre l'autore o l'organizzazione e la data di accesso (ad es. Streamlit~\cite{streamlit2019}, Weights \& Biases~\cite{wandb2020}).
+    \item \textbf{DA EVITARE come fonti primarie:} Wikipedia, blog personali, forum (StackOverflow), post su Medium o siti commerciali privi di revisione paritaria.
+\end{enumerate}
+
+\subsection{Comandi BibLaTeX per citare nel testo}
+In questo template la bibliografia è gestita tramite il pacchetto \texttt{biblatex} con backend \texttt{biber}. I comandi principali a disposizione sono:
+
+\begin{itemize}
+    \item \texttt{\textbackslash cite\{chiave\}}: Inserisce il numero della citazione tra parentesi quadre.
+    \begin{itemize}
+        \item \textit{Sintassi:} \texttt{Come dimostrato in letteratura\textbackslash cite\{nidhra2012black\}.}
+        \item \textit{Risultato:} Come dimostrato in letteratura~\cite{nidhra2012black}.
+    \end{itemize}
+    \item \texttt{\textbackslash textcite\{chiave\}}: Cita l'autore integrando il nome nel discorso corrente, seguito dal numero di citazione.
+    \begin{itemize}
+        \item \textit{Sintassi:} \texttt{\textbackslash textcite\{gunning2019xai\} presentano il programma XAI della DARPA.}
+        \item \textit{Risultato:} \textcite{gunning2019xai} presentano il programma XAI della DARPA.
+    \end{itemize}
+    \item \texttt{\textbackslash cite[opzioni]\{chiave\}}: Permette di specificare numeri di pagina, capitoli o teoremi specifici della fonte.
+    \begin{itemize}
+        \item \textit{Sintassi:} \texttt{\textbackslash cite[p.~45]\{ammann2016introduction\}}
+        \item \textit{Risultato:} \cite[p.~45]{ammann2016introduction}
+    \end{itemize}
+    \item \textbf{Citazioni multiple:} Si inseriscono le chiavi separate da virgola all'interno dello stesso comando:
+    \begin{itemize}
+        \item \textit{Sintassi:} \texttt{\textbackslash cite\{liu2009false, teixeira2015secure, deng2017false\}}
+        \item \textit{Risultato:} \cite{liu2009false, teixeira2015secure, deng2017false}.
+    \end{itemize}
+\end{itemize}
+
+\subsection{Regole sintattiche del file \texttt{biblio.bib}}
+Nel file \texttt{biblio.bib} ogni voce bibliografica ha una struttura ben definita. Tre regole fondamentali:
+\begin{enumerate}
+    \item \textbf{Nomi degli autori:} Usare sempre il formato \texttt{Cognome, Nome} e separare più autori con la parola chiave \texttt{and}. Esempio:
+\begin{lstlisting}[language=TeX]
+author = {Ammann, Paul and Offutt, Jeff}
+\end{lstlisting}
+    \item \textbf{Preservare maiuscole e acronimi:} BibLaTeX può convertire i titoli in minuscolo secondo lo stile tipografico. Per preservare acronimi (es. FDIA, AI, TCP/IP) o nomi propri nel titolo, racchiuderli tra parentesi graffe:
+\begin{lstlisting}[language=TeX]
+title = {Attacchi {FDIA} in Reti {TCP/IP} Basate su {Linux}}
+\end{lstlisting}
+    \item \textbf{Identificatori digitali (DOI):} Quando un articolo dispone di un Digital Object Identifier (DOI), inserirlo sempre nel campo \texttt{doi = \{...\}}.
+\end{enumerate}
+
+
+% ============================================================================
+\section{Fondamenti Teorici: Approccio Black-Box vs White-Box}
+\label{sec:black-white}
+% ============================================================================
+
+\textbf{Guida per lo studente:} In questa sezione si presentano i concetti teorici fondamentali necessari a comprendere il problema. Nell'esempio della presente tesi, si confrontano i paradigmi di collaudo e validazione software.
+
+Un approccio \emph{black-box} considera il sistema software come una scatola chiusa: si osservano esclusivamente gli ingressi e le uscite, misurando la corrispondenza tra il comportamento osservato e quello atteso~\cite{gunning2019xai}. Le metriche standard di rilevamento (accuratezza, precisione, recall, F1-score) valutano unicamente le prestazioni esterne~\cite{powers2020evaluation}. Il limite strutturale della validazione black-box~\cite{ammann2016introduction} è che due sistemi che producono i medesimi output risultano indistinguibili, anche quando il processo logico interno differisce radicalmente.
+
+Al contrario, un approccio \emph{white-box} apre la scatola: ogni variabile di stato e quantità intermedia che concorre alla decisione finale viene resa esplicita, registrata e formalmente verificata~\cite{nidhra2012black}. Come sottolineato nella letteratura sull'Intelligenza Artificiale Spiegabile (XAI)~\cite{doshi2017towards}, la validazione white-box è l'unica metodologia in grado di accertare se un sistema informatico opera correttamente per le motivazioni appropriate, e non per coincidenze statistiche o distorsioni nei dati di test.
+
+
+% ============================================================================
+\section{Analisi dello Stato dell'Arte e Lavori Correlati}
+\label{sec:lavori-correlati}
+% ============================================================================
+
+\textbf{Guida per lo studente:} Questa sezione è dedicata al confronto critico con i lavori esistenti. Lo studente deve rispondere a domande quali:
+\begin{itemize}
+    \item Quali soluzioni sono state proposte in letteratura per problemi simili?
+    \item Quali sono i punti di forza e i limiti delle tecnologie attuali?
+    \item In che cosa la soluzione proposta in questa tesi si differenzia o apporta un miglioramento?
+\end{itemize}
+
+Ad esempio, nello studio della sicurezza nei sistemi cyber-fisici (CPS), gli attacchi di tipo \emph{False Data Injection} (FDIA) sono stati formalizzati inizialmente da \textcite{liu2009false} nel contesto delle reti di distribuzione elettrica. Successivamente, \textcite{teixeira2015secure} e \textcite{deng2017false} ne hanno esteso la modellazione matematica ai sistemi di controllo industriale a tempo continuo, evidenziando come attacchi stealthy possano eludere i tradizionali rilevatori basati su residui quadratici. L'applicazione di tali minacce al dominio ferroviario è stata ampiamente documentata da \textcite{soderi2023railway}.
+
+
+% ============================================================================
+\section{Modelli Teorici Avanzati: Active Inference}
+\label{sec:active-inference-bg}
+% ============================================================================
+
+\textbf{Guida per lo studente:} Inserire qui eventuali formalismi matematici o paradigmi computazionali avanzati utilizzati nella tesi (es. reti neurali, teoria dei grafi, crittografia, modelli bayesiani).
+
+L'Active Inference è un framework sviluppato nelle neuroscienze computazionali~\cite{friston2010free, parr2022active}, fondato sul principio che un agente intelligente minimizza una quantità formale nota come Free Energy~\cite{friston2017active}. Il modello unifica percezione e azione mediante l'aggiornamento bayesiano delle credenze (predictive coding~\cite{rao1999predictive, feldman2010attention}) e la minimizzazione dell'incertezza attesa (Expected Free Energy)~\cite{friston2015epistemic, da2020active, parr2019generalised, schwartenbeck2019computational, mirza2019introducing}.
+
+La trattazione dei dettagli architetturali e ingegneristici derivati da questo impianto teorico è demandata al \Cref{cap:sistema}.

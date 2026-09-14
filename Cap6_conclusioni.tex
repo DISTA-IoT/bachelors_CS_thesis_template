@@ -1,0 +1,94 @@
+% ============================================================================
+% CAPITOLO 6 — CONCLUSIONI E SVILUPPI FUTURI
+% ============================================================================
+\chapter{Conclusioni e sviluppi futuri}
+\label{cap:conclusioni}
+
+% ----------------------------------------------------------------------------
+% NOTA METODOLOGICA FONDAMENTALE SULLA STESURA
+% ----------------------------------------------------------------------------
+\noindent\fbox{
+\parbox{0.96\textwidth}{
+\textbf{\large REGOLE DI STESURA PER LO STUDENTE — LEGGERE PRIMA DI SCRIVERE:}
+\vspace{0.2cm}
+\begin{enumerate}
+    \item \textbf{DA SCRIVERE PRIMA DI TORNARE ALL'INTRODUZIONE:} Questo capitolo va scritto dopo aver completato l'analisi dei risultati (\Cref{cap:risultati}).
+    \item \textbf{ONESTÀ SCIENTIFICA:} Una buona tesi di laurea in Informatica non nasconde i limiti o i difetti del proprio lavoro, ma li analizza lucidamente nella sezione dedicata (\Cref{sec:limiti}). Riconoscere i confini della propria soluzione dimostra maturità ingegneristica.
+    \item \textbf{ULTIMO PASSO:} Appena concluso questo capitolo, sei pronto per redigere il \textbf{\Cref{cap:introduzione} (Introduzione)} e il \textbf{Sommario/Abstract}!
+\end{enumerate}
+}
+}
+\vspace{0.6cm}
+
+Questo capitolo finale sintetizza i principali traguardi conseguiti dal lavoro di tesi, valuta criticamente il soddisfacimento degli obiettivi prefissati, discute i limiti intrinseci della soluzione proposta e delinea le prospettive future di ricerca e sviluppo.
+
+
+% ============================================================================
+\section{Sintesi del Lavoro Svolto e Contributi}
+\label{sec:sintesi-contributi}
+% ============================================================================
+
+\textbf{Guida per lo studente:} Riassumere in uno o due paragrafi la panoramica del lavoro:
+\begin{itemize}
+    \item Richiamare brevemente il problema affrontato;
+    \item Ricordare la soluzione proposta e la metodologia adottata;
+    \item Sintetizzare i contributi originali prodotti:
+    \begin{enumerate}
+        \item \textbf{Contributo teorico/architetturale:} La formalizzazione del modello o la progettazione dell'architettura;
+        \item \textbf{Contributo ingegneristico/software:} L'implementazione del prototipo software modulare, documentato e testato;
+        \item \textbf{Contributo sperimentale:} La pipeline di validazione empirica e la raccolta sistematica dei dati di prestazione.
+    \end{enumerate}
+\end{itemize}
+
+
+% ============================================================================
+\section{Valutazione del Raggiungimento degli Obiettivi}
+\label{sec:raggiungimento-obiettivi}
+% ============================================================================
+
+\textbf{Guida per lo studente:} Confrontare in modo puntuale i risultati ottenuti con gli obiettivi specifici dichiarati nella sezione introduttiva (\Cref{sec:problema-obiettivi}):
+
+\begin{itemize}
+    \item \textbf{Obiettivo 1 (Stato dell'arte):} Pienamente raggiunto attraverso la disamina critica della letteratura nel \Cref{cap:background};
+    \item \textbf{Obiettivo 2 (Progettazione architetturale):} Soddisfatto con la definizione dell'architettura a componenti nel \Cref{cap:sistema};
+    \item \textbf{Obiettivo 3 (Implementazione software):} Realizzato mediante lo sviluppo della codebase Python illustrata nel \Cref{cap:Implementazione};
+    \item \textbf{Obiettivo 4 (Validazione sperimentale):} Completato con successo attraverso i test di ablation e stress test documentati nel \Cref{cap:risultati}.
+\end{itemize}
+
+
+% ============================================================================
+\section{Limiti della Soluzione Proposta}
+\label{sec:limiti}
+% ============================================================================
+
+\textbf{Guida per lo studente:} Identificare con precisione i limiti della soluzione, rispondendo a domande quali:
+\begin{itemize}
+    \item Quali assunzioni semplificative sono state adottate (es. spazio degli stati discreto vs continuo, ambiente deterministico vs stocastico)?
+    \item In quali condizioni estreme il sistema degrada o fallisce?
+    \item Quali vincoli computazionali o di scalabilità emergono all'aumentare delle dimensioni dell'input?
+    \item Quali aspetti non sono stati coperti per limiti temporali del tirocinio di laurea triennale?
+\end{itemize}
+
+
+% ============================================================================
+\section{Sviluppi Futuri}
+\label{sec:sviluppi-futuri}
+% ============================================================================
+
+\textbf{Guida per lo studente:} Delineare le estensioni naturali del progetto, sia a livello di ricerca accademica sia di ingegnerizzazione industriale:
+
+\begin{itemize}
+    \item \textbf{Estensione del modello:} Transizione a spazi degli stati continui o integrazione di modelli di deep reinforcement learning;
+    \item \textbf{Benchmark su larga scala:} Esecuzione di test su banchi di prova fisici o testbed industriali reali invece che su simulazioni sintetiche;
+    \item \textbf{Ottimizzazione delle prestazioni:} Compilazione Just-in-Time o riscrittura dei moduli computazionalmente intensivi in linguaggi compilati a basso livello (es. Rust, C++);
+    \item \textbf{Integrazione e certificazione:} Adeguamento del ciclo di vita del software ai requisiti di certificazione per sistemi mission-critical previsti dalle normative europee~\cite{en50716, en50128}.
+\end{itemize}
+
+\vspace{0.8cm}
+\noindent\fbox{
+\parbox{0.96\textwidth}{
+\textbf{\large COMPLIMENTI! HAI TERMINATO IL CORPO DELLA TESI.}
+\vspace{0.2cm}\\
+Ora che hai completato questo capitolo, procedi con l'ultimo passaggio: apri il \textbf{\Cref{cap:introduzione} (Introduzione)} e redigi l'introduzione definitiva e il \textbf{Sommario/Abstract}, forte della consapevolezza completa di tutto ciò che hai realizzato!
+}
+}

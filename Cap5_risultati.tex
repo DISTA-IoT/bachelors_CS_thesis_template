@@ -1,0 +1,126 @@
+% ============================================================================
+% CAPITOLO 5 — RISULTATI SPERIMENTALI E VALIDAZIONE
+% ============================================================================
+\chapter{Risultati e validazione}
+\label{cap:risultati}
+
+% ----------------------------------------------------------------------------
+% NOTA METODOLOGICA FONDAMENTALE SULLA STESURA
+% ----------------------------------------------------------------------------
+\noindent\fbox{
+\parbox{0.96\textwidth}{
+\textbf{\large REGOLE DI STESURA PER LO STUDENTE — LEGGERE PRIMA DI SCRIVERE:}
+\vspace{0.2cm}
+\begin{enumerate}
+    \item \textbf{SCRIVERE QUESTO CAPITOLO SUBITO DOPO IL CAPITOLO 4:} Non appena hai raccolto i dati dei test e generato i grafici, \textbf{redigi immediatamente questo capitolo}!
+    \item \textbf{PERCHÉ?} I numeri, le configurazioni sperimentali, i parametri dei test e il significato delle anomalie osservate sono ancora chiari e verificabili. Se aspetti, rischi di dimenticare le condizioni esatte in cui sono stati eseguiti i test.
+    \item \textbf{STRUTTURA SCIENTIFICA:} Un capitolo di risultati deve sempre seguire questo schema logico:
+    \begin{itemize}
+        \item Prima si definisce la \textbf{metodologia di test};
+        \item Poi si definiscono formalmente le \textbf{metriche matematiche};
+        \item Poi si mostrano i \textbf{dati quantitativi} (tabelle e grafici);
+        \item Infine si conduce una \textbf{discussione critica} approfondita (senza limitarsi a descrivere i grafici).
+    \end{itemize}
+\end{enumerate}
+}
+}
+\vspace{0.6cm}
+
+Questo capitolo presenta la metodologia di validazione adottata e i risultati sperimentali ottenuti per verificare l'efficacia, la correttezza e la robustezza del sistema proposto.
+
+
+% ============================================================================
+\section{Metodologia di Validazione e Setup Sperimentale}
+\label{sec:metodologia-validazione}
+% ============================================================================
+
+\textbf{Guida per lo studente:} Descrivere dettagliatamente l'ambiente e gli scenari in cui sono stati svolti i test per garantire la riproducibilità scientifica:
+\begin{itemize}
+    \item \textbf{Ambiente hardware e software di test:} Specifiche della macchina (CPU, RAM, OS, versione runtime);
+    \item \textbf{Dataset o scenari di simulazione:} Descrizione dei dati utilizzati (dimensioni, provenienza, split train/test o parametri di generazione sintetica);
+    \item \textbf{Scenari di test strutturati:}
+    \begin{enumerate}
+        \item \emph{Funzionamento nominale (Baseline):} Verifica del comportamento del sistema in condizioni ordinarie prive di disturbi;
+        \item \emph{Analisi dei componenti (Ablation Study):} Rimozione selettiva di singoli moduli per verificare se ciascuno di essi è strettamente necessario;
+        \item \emph{Stress Test e casi limite:} Valutazione del comportamento del sistema a fronte di input malformati, rumore estremo o attacchi malevoli coordinati.
+    \end{enumerate}
+\end{itemize}
+
+
+% ============================================================================
+\section{Definizione delle Metriche di Valutazione}
+\label{sec:metriche-valutazione}
+% ============================================================================
+
+\textbf{Guida per lo studente:} Tutte le metriche utilizzate nelle tabelle e nei grafici devono essere definite formalmente \textbf{prima} di presentare i risultati numerici~\cite{powers2020evaluation}.
+
+Nel caso di sistemi di rilevamento e classificazione, le metriche standard basate sulla matrice di confusione sono definite come segue:
+
+\begin{itemize}
+    \item \textbf{Precision (Precisione):} Frazione di allarmi generati che corrispondono a reali anomalie:
+    \begin{equation}
+    \mathrm{Precision} = \frac{\mathrm{TP}}{\mathrm{TP} + \mathrm{FP}}
+    \label{eq:precision}
+    \end{equation}
+    
+    \item \textbf{Recall (Sensibilità):} Capacità del sistema di intercettare tutte le anomalie effettivamente presenti:
+    \begin{equation}
+    \mathrm{Recall} = \frac{\mathrm{TP}}{\mathrm{TP} + \mathrm{FN}}
+    \label{eq:recall}
+    \end{equation}
+    
+    \item \textbf{F1-Score:} Media armonica tra Precision e Recall, utile in presenza di classi fortemente sbilanciate:
+    \begin{equation}
+    \mathrm{F1} = 2 \cdot \frac{\mathrm{Precision} \cdot \mathrm{Recall}}{\mathrm{Precision} + \mathrm{Recall}}
+    \label{eq:f1-score}
+    \end{equation}
+    
+    \item \textbf{Tempo medio di reazione (Latenza $T_{\mathrm{react}}$):} Intervallo temporale intercorso tra l'inizio dell'anomalia e la prima azione cautelativa intrapresa dal sistema.
+\end{itemize}
+
+
+% ============================================================================
+\section{Risultati Sperimentali}
+\label{sec:risultati-sperimentali}
+% ============================================================================
+
+\textbf{Guida per lo studente:} Raccogliere i dati in tabelle riepilogative chiare e commentare l'andamento osservato.
+
+La \Cref{tab:risultati-confronto} riporta il confronto quantitativo delle prestazioni tra la configurazione completa del sistema e le varianti semplificate ottenute tramite ablation study.
+
+\begin{table}[htbp]
+\centering
+\small
+\renewcommand{\arraystretch}{1.3}
+\begin{tabular}{l c c c c}
+\toprule
+\textbf{Configurazione Sistema} & \textbf{Precision} & \textbf{Recall} & \textbf{F1-Score} & \textbf{Latenza (ms)} \\
+\midrule
+Sistema Completo (Proposto)    & \textbf{1.00}      & \textbf{1.00}   & \textbf{1.00}     & \textbf{12.4} \\
+Variante Senza Modello Interno  & 0.42               & 0.65            & 0.51              & 28.1 \\
+Variante Senza Termine Epistemico & 0.88             & 0.72            & 0.79              & 15.6 \\
+Baseline Tradizionale Black-Box & 0.75               & 0.80            & 0.77              & 24.3 \\
+\bottomrule
+\end{tabular}
+\caption{Confronto delle prestazioni tra la soluzione proposta e le configurazioni di baseline.}
+\label{tab:risultati-confronto}
+\end{table}
+
+Come si evince dalla \Cref{tab:risultati-confronto}, il sistema completo consegue prestazioni ottimali su tutte le metriche considerate, con un tempo medio di risposta contenuto in circa $12$\,ms.
+
+
+% ============================================================================
+\section{Discussione Critica dei Risultati}
+\label{sec:discussione-critica}
+% ============================================================================
+
+\textbf{Guida per lo studente:} Questa è la sezione più importante del capitolo. Una tesi di laurea non deve limitarsi a descrivere i dati (``la linea rossa sale e la linea blu scende''), ma deve spiegare il \textbf{perché scientifico} di ciò che si osserva:
+
+\begin{itemize}
+    \item \textbf{Interpretazione causale:} Perché una variante ha fallito? Quale componente mancante ha causato i falsi positivi o la degradazione delle prestazioni?
+    \item \textbf{Risposta alle ipotesi di partenza:} I risultati confermano le aspettative teoriche formulate all'inizio del lavoro?
+    \item \textbf{Correttezza del processo vs correttezza del risultato:} Nel caso di validazione white-box, verificare se il sistema ha preso la decisione corretta per il motivo giusto, oppure se ha ottenuto un risultato positivo per pura casualità (come evidenziato nei test di stress).
+    \item \textbf{Trade-off operativi:} Quali compromessi emergono tra efficacia di rilevamento, costo computazionale e reattività del controllore?
+\end{itemize}
+
+Sulla base delle evidenze raccolte, il \Cref{cap:conclusioni} traccerà il bilancio finale del lavoro, identificando i limiti dell'approccio e le future direzioni di ricerca.

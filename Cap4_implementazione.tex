@@ -1,0 +1,114 @@
+% ============================================================================
+% CAPITOLO 4 — IMPLEMENTAZIONE
+% ============================================================================
+\chapter{Implementazione}
+\label{cap:Implementazione}
+
+% ----------------------------------------------------------------------------
+% NOTA METODOLOGICA FONDAMENTALE SULLA STESURA
+% ----------------------------------------------------------------------------
+\noindent\fbox{
+\parbox{0.96\textwidth}{
+\textbf{\large REGOLE DI STESURA PER LO STUDENTE — LEGGERE PRIMA DI SCRIVERE:}
+\vspace{0.2cm}
+\begin{enumerate}
+    \item \textbf{QUESTO È IL PRIMO CAPITOLO DA SCRIVERE (INSIEME AL CAPITOLO 5):} Non appena hai completato il codice, il simulatore o il prototipo software della tesi, \textbf{inizia subito la scrittura da questo capitolo e dal \Cref{cap:risultati}}.
+    \item \textbf{PERCHÉ?} L'architettura software, le librerie usate, le classi create, i bug risolti e i dettagli implementativi sono vivi nella tua memoria. Aspettare settimane prima di documentarli porta inevitabilmente a dimenticare motivazioni tecniche e dettagli critici.
+    \item \textbf{DOPO AVER SCRITTO QUESTO CAPITOLO E IL CAPITOLO 5:} Passa al \Cref{cap:sistema} (Progettazione formale), poi al \Cref{cap:background} (Stato dell'arte), poi al \Cref{cap:conclusioni} (Conclusioni), e solo alla fine di tutto al \Cref{cap:introduzione} (Introduzione).
+\end{enumerate}
+}
+}
+\vspace{0.6cm}
+
+Questo capitolo documenta la realizzazione pratica del software sviluppato nel lavoro di tesi. Lo scopo è spiegare come l'architettura concettuale definita nel \Cref{cap:sistema} è stata tradotta in codice funzionante, manutenibile e riproducibile.
+
+\textbf{Nota epistemologica sul codice:} Il software sviluppato in una tesi di laurea non deve essere inteso come un prodotto commerciale fine a se stesso, bensì come uno \textbf{strumento epistemico} rigoroso: il suo valore risiede nell'eliminare ogni ambiguità e nel permettere di rispondere con precisione scientifica alla domanda di ricerca.
+
+Inoltre, il capitolo contiene le indicazioni per inserire ed evidenziare porzioni di codice sorgente tramite il pacchetto \texttt{listings}.
+
+
+% ============================================================================
+\section{Ambiente di Sviluppo e Tecnologie Utilizzate}
+\label{sec:ambiente-sviluppo}
+% ============================================================================
+
+\textbf{Guida per lo studente:} Riportare in questa sezione lo stack tecnologico completo, specificando:
+\begin{itemize}
+    \item \textbf{Linguaggio di programmazione e runtime:} Versione del linguaggio (es. Python 3.11+, C++20, Java 21 LTS) e relative motivazioni (es. determinismo, velocità di prototipazione, ecosistema scientifico);
+    \item \textbf{Librerie e framework core:} Librerie matematiche (es. NumPy, SciPy), framework per GUI/Web (es. Streamlit~\cite{streamlit2019}, Flask, FastAPI) e strumenti di tracciamento degli esperimenti (es. Weights \& Biases~\cite{wandb2020});
+    \item \textbf{Gestione dell'ambiente e dipendenze:} Specificare l'uso di ambienti virtuali (\texttt{venv}, \texttt{conda}) o container (\texttt{Docker}) per garantire la portabilità dell'applicazione;
+    \item \textbf{Sistema di controllo versione:} Organizzazione del repository Git, suddivisione dei branch e convenzioni sui commit.
+\end{itemize}
+
+
+% ============================================================================
+\section{Organizzazione del Repository e Struttura Modulare}
+\label{sec:struttura-codice}
+% ============================================================================
+
+\textbf{Guida per lo studente:} Mostrare l'albero delle directory del progetto e spiegare la responsabilità assegnata a ciascun file sorgente.
+
+Un esempio tipico di organizzazione del codice in un progetto di tesi in Informatica è il seguente:
+
+\begin{itemize}
+    \item \texttt{constants.py} --- Centralizza tutte le costanti di configurazione, i percorsi e le soglie numeriche, evitando valori \emph{hard-coded} sparsi nel codice;
+    \item \texttt{environment.py} --- Implementa la simulazione dell'ambiente fisico e lo strato sensoriale;
+    \item \texttt{belief\_state.py} --- Gestisce l'aggiornamento bayesiano dello stato interno e il rilevamento delle anomalie;
+    \item \texttt{controller.py} --- Implementa il calcolo della funzione obiettivo e la selezione della decisione ottima;
+    \item \texttt{simulation.py} --- Coordina il ciclo principale (\emph{main loop}) dell'esperimento ed esporta i log di tracciamento;
+    \item \texttt{visualize.py} --- Genera i grafici statistici e le rappresentazioni grafiche utilizzate nel documento di tesi.
+\end{itemize}
+
+
+% ============================================================================
+\section{Dettagli Implementativi e Listati di Codice}
+\label{sec:dettagli-codice}
+% ============================================================================
+
+\textbf{Guida per lo studente:} Non riportare centinaia di righe di codice banale (come getter, setter o parser standard). Inserire unicamente gli snippet essenziali che contengono il cuore algoritmico della tesi.
+
+Ogni listato di codice deve:
+\begin{enumerate}
+    \item Essere racchiuso nell'ambiente \texttt{\textbackslash begin\{lstlisting\}[language=\dots, caption=\dots, label=\dots]};
+    \item Possedere una didascalia (\texttt{caption}) che descriva brevemente cosa realizza il codice;
+    \item Avere un'etichetta (\texttt{label=\{lst:\dots\}}) per il riferimento incrociato;
+    \item Essere accompagnato da una spiegazione puntuale nel testo che commenta la logica del codice linea per linea.
+\end{enumerate}
+
+Il \Cref{lst:belief-update} mostra la logica di calcolo dell'errore di predizione e dell'aggiornamento dell'incertezza implementata nel modulo \texttt{BeliefState}:
+
+\begin{lstlisting}[language=Python, caption={Logica di aggiornamento percettivo nel \texttt{BeliefState}.}, label={lst:belief-update}]
+def update(self, sensor_value: float, t: int) -> None:
+    # 1. Calcolo del valore atteso dal modello interno
+    expected_value = self.generative_model.predict(t)
+    
+    # 2. Calcolo del prediction error
+    self.prediction_error = abs(sensor_value - expected_value)
+    
+    # 3. Confronto con la soglia di anomalia
+    if self.prediction_error > self.anomaly_threshold:
+        self.anomaly_detected = True
+        self.uncertainty = 1.0          # Massima incertezza
+        self.estimate = expected_value  # Priorita al modello interno
+    else:
+        self.anomaly_detected = False
+        self.uncertainty = 0.1          # Livello base di rumore
+        self.estimate = sensor_value    # Fiducia nel sensore
+\end{lstlisting}
+
+Come si può osservare nel \Cref{lst:belief-update}, quando il valore assoluto della differenza supera la soglia prefissata, l'incertezza sale immediatamente al valore massimo ($1.0$), innescando una risposta cautelativa nel controllore.
+
+
+% ============================================================================
+\section{Scelte Progettuali e Criticità Risolte}
+\label{sec:scelte-criticita}
+% ============================================================================
+
+\textbf{Guida per lo studente:} Spiegare in modo onesto e analitico le sfide tecniche incontrate durante lo sviluppo e le soluzioni adottate:
+\begin{itemize}
+    \item \textbf{Scelte architetturali:} Perché è stato scelto un pattern rispetto a un altro (es. ereditarietà vs composizione, architettura a eventi vs polling sincrono)?
+    \item \textbf{Efficienza computazionale:} Quali ottimizzazioni sono state necessarie per rispettare i requisiti temporali (es. vettorizzazione delle operazioni numeriche in NumPy)?
+    \item \textbf{Gestione degli errori e robustezza:} Come sono state gestite eccezioni, valori nulli, timeout di rete o input sensoriali fuori scala?
+\end{itemize}
+
+L'analisi dei risultati prodotti dall'esecuzione di questo software è presentata in dettaglio nel successivo \Cref{cap:risultati}.

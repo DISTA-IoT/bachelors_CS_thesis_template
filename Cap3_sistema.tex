@@ -1,0 +1,141 @@
+% ============================================================================
+% CAPITOLO 3 — PROGETTAZIONE DEL SISTEMA
+% ============================================================================
+\chapter{Progettazione del sistema}
+\label{cap:sistema}
+
+Questo capitolo illustra la fase di analisi e progettazione architetturale del sistema proposto. Lo studente deve mostrare la capacità di trasformare i requisiti teorici in un'architettura software strutturata, modulare e formalmente definita.
+
+Inoltre, questo capitolo fornisce gli esempi pratici per l'inserimento e il corretto riferimento incrociato di:
+\begin{itemize}
+    \item \textbf{Figure e diagrammi} (\Cref{sec:esempi-figure});
+    \item \textbf{Tabelle tipografiche con il pacchetto \texttt{booktabs}} (\Cref{sec:esempi-tabelle});
+    \item \textbf{Formule ed equazioni matematiche numerate} (\Cref{sec:esempi-equazioni}).
+\end{itemize}
+
+
+% ============================================================================
+\section{Analisi dei Requisiti}
+\label{sec:requisiti}
+% ============================================================================
+
+\textbf{Guida per lo studente:} Prima di presentare l'architettura, descrivere i requisiti del sistema separandoli chiaramente in:
+\begin{enumerate}
+    \item \textbf{Requisiti Funzionali (RF):} Quali operazioni e funzionalità specifiche il sistema deve eseguire (es. RF1: Rilevamento di valori anomali sui sensori; RF2: Calcolo del punteggio di confidenza in tempo reale; RF3: Generazione automatica dei log di audit).
+    \item \textbf{Requisiti Non Funzionali (RNF):} Proprietà qualitative del sistema, quali:
+    \begin{itemize}
+        \item \emph{Prestazioni e latenza:} Tempo massimo consentito per elaborare un singolo campione di input (es. $< 100$\,ms);
+        \item \emph{Trasparenza e tracciabilità (White-box):} Esposizione di tutte le variabili intermedie per consentire l'ispezione;
+        \item \emph{Modularità ed estensibilità:} Facilità di sostituzione dei moduli interni o aggiunta di nuovi scenari di test;
+        \item \emph{Riproducibilità:} Garanzia che a parità di seme casuale (\emph{random seed}) e configurazione, i risultati siano identici al 100\%.
+    \end{itemize}
+\end{enumerate}
+
+
+% ============================================================================
+\section{Architettura Generale del Sistema}
+\label{sec:architettura-generale}
+% ============================================================================
+
+\textbf{Guida per lo studente:} Descrivere l'architettura complessiva ad alto livello, spiegando come i vari macro-componenti cooperano tra loro e qual è il flusso dei dati.
+
+
+% ----------------------------------------------------------------------------
+\subsection{Esempio di inserimento di figure in LaTeX}
+\label{sec:esempi-figure}
+% ----------------------------------------------------------------------------
+
+Ogni figura inserita nella tesi deve:
+\begin{enumerate}
+    \item Essere racchiusa nell'ambiente \texttt{figure} con posizionatore (es. \texttt{[htbp]});
+    \item Avere un file sorgente in formato vettoriale (PDF) o raster ad alta risoluzione (PNG, JPEG da almeno 300 DPI) memorizzato nella cartella \texttt{img/};
+    \item Essere provvista di una didascalia esplicativa (\texttt{\textbackslash caption\{\dots\}});
+    \item Avere un'etichetta univoca (\texttt{\textbackslash label\{fig:\dots\}}) posizionata \textbf{sempre dopo} il caption;
+    \item \textbf{Essere sempre citata nel testo} con \texttt{\textbackslash Cref\{fig:\dots\}} o \texttt{\textbackslash ref\{fig:\dots\}}. Una figura mai citata nel testo è un grave errore metodologico.
+\end{enumerate}
+
+La \Cref{fig:architettura-esempio} illustra lo schema a blocchi dell'architettura proposta, evidenziando il flusso continuo tra la sorgente dei dati, il modulo di inferenza e il componente decisionale.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.85\textwidth]{placeholder_figura.png}
+    \caption{Diagramma architetturale di alto livello del sistema proposto. Il componente centrale elabora le osservazioni sensoriali e calcola la politica di controllo ottima.}
+    \label{fig:architettura-esempio}
+\end{figure}
+
+
+% ============================================================================
+\section{Componenti e Moduli Software}
+\label{sec:moduli-sistema}
+% ============================================================================
+
+\textbf{Guida per lo studente:} Descrivere i singoli moduli software del sistema, le loro responsabilità e le interfacce esposte. Nel contesto del progetto di tesi, i componenti principali sono:
+
+\begin{itemize}
+    \item \textbf{Modulo Ambiente e Sensori (\texttt{Environment}):} Modella la dinamica fisica e lo strato sensoriale, introducendo rumore gaussiano o simulando iniezioni di dati malevoli;
+    \item \textbf{Modello Generativo Interno (\texttt{GenerativeModel}):} Codifica la conoscenza a priori del sistema e genera predizioni sullo stato atteso;
+    \item \textbf{Modulo di Stima dello Stato (\texttt{BeliefState}):} Calcola l'errore di predizione tra valore osservato e valore previsto, aggiornando la stima di incertezza posteriore;
+    \item \textbf{Controllore Decisionale (\texttt{Controller}):} Valuta lo spazio delle azioni possibili attraverso una funzione di costo formale ed emette il comando attuativo.
+\end{itemize}
+
+
+% ----------------------------------------------------------------------------
+\subsection{Esempio di inserimento di tabelle con il pacchetto \texttt{booktabs}}
+\label{sec:esempi-tabelle}
+% ----------------------------------------------------------------------------
+
+Nelle pubblicazioni scientifiche e nelle tesi di laurea in Informatica \textbf{non si usano linee verticali nelle tabelle}. Si adottano le linee orizzontali ad alto valore tipografico offerte dal pacchetto \texttt{booktabs}: \texttt{\textbackslash toprule}, \texttt{\textbackslash midrule} e \texttt{\textbackslash bottomrule}.
+
+Come per le figure, ogni tabella deve avere un \texttt{\textbackslash caption}, una \texttt{\textbackslash label\{tab:\dots\}} ed essere citata nel testo (ad esempio: i parametri principali del sistema sono sintetizzati nella \Cref{tab:parametri-esempio}).
+
+\begin{table}[htbp]
+\centering
+\small
+\renewcommand{\arraystretch}{1.3}
+\begin{tabular}{l c l}
+\toprule
+\textbf{Parametro} & \textbf{Valore di Default} & \textbf{Descrizione} \\
+\midrule
+\texttt{NUM\_STEPS}          & 50    & Durata temporale della simulazione a discreti \\
+\texttt{SENSOR\_NOISE}       & 0.05  & Ampiezza del rumore additivo uniforme \\
+\texttt{ANOMALY\_THRESHOLD}  & 0.30  & Soglia sul prediction error per scatenare l'anomalia \\
+\texttt{DEFAULT\_SPEED}      & 10.0  & Velocità di marcia a regime nominale (km/h) \\
+\texttt{REDUCED\_SPEED}      & 4.0   & Velocità cautelativa in caso di alta incertezza \\
+\texttt{STOP\_SPEED}         & 0.0   & Velocità di arresto immediato per sicurezza \\
+\bottomrule
+\end{tabular}
+\caption{Parametri di configurazione del sistema software.}
+\label{tab:parametri-esempio}
+\end{table}
+
+
+% ============================================================================
+\section{Modello Matematico e Logica Decisionale}
+\label{sec:modello-matematico}
+% ============================================================================
+
+\textbf{Guida per lo studente:} Se la tesi impiega modelli probabilistici, equazioni differenziali, formule di costo o funzioni obiettivo, formalizzarli con precisione matematica.
+
+
+% ----------------------------------------------------------------------------
+\subsection{Esempio di inserimento di equazioni matematiche}
+\label{sec:esempi-equazioni}
+% ----------------------------------------------------------------------------
+
+Le equazioni matematiche importanti devono essere posizionate nell'ambiente \texttt{equation}, dotate di etichetta \texttt{\textbackslash label\{eq:\dots\}} e referenziate con \texttt{\textbackslash Cref\{eq:\dots\}}.
+
+Ad esempio, l'errore di predizione sensoriale $e_t$ al tempo $t$ è calcolato come discrepanza assoluta tra l'osservazione $o_t$ e la predizione $\hat{s}_t$:
+\begin{equation}
+e_t = \left| o_t - \hat{s}_t \right|
+\label{eq:prediction-error}
+\end{equation}
+
+Quando l'errore di predizione $e_t$ definito nell'\Cref{eq:prediction-error} eccede la soglia $\theta_{\mathrm{anomalia}}$, il livello di incertezza $\sigma_t$ viene elevato al valore massimo.
+
+La selezione della politica decisionale ottima $\pi^*$ avviene minimizzando la funzione obiettivo di Expected Free Energy (EFE), composta da una componente pragmatica e da una componente epistemica~\cite{friston2015epistemic}:
+\begin{equation}
+\pi^* = \arg\min_{\pi} \left[ -\mathrm{PragmaticValue}(\pi) - \mathrm{EpistemicValue}(\pi) \right]
+\label{eq:efe-decision}
+\end{equation}
+
+Nel \Cref{cap:Implementazione} verrà esaminata l'implementazione pratica di tali moduli all'interno del codice sorgente.

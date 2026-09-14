@@ -1,0 +1,333 @@
+% ============================================================================
+% TEMPLATE TESI - CORSO DI STUDIO IN INFORMATICA
+% ============================================================================
+% GUIDA RAPIDA ALLA STESURA PER GLI STUDENTI:
+% 0. NOTA DI CONTESTO SULLE PREFERENZE METODOLOGICHE:
+%    - Questo template e le relative linee guida didattiche rispecchiano fedelmente le preferenze
+%      scientifiche e didattiche del Prof. Jesús Cevallos (docente di Probabilità e Statistica per l'Informatica),
+%      allineate alla sua materia e ai suoi standard di ricerca epistemica e quantitativa.
+%    - ATTENZIONE: Altri docenti e relatori di altre aree dell'informatica potrebbero avere specifiche,
+%      convenzioni o preferenze metodologiche differenti; è sempre indispensabile concordare
+%      l'impostazione finale con il proprio relatore di tesi.
+%
+% 1. REGOLE FORMALI DI COPERTINA:
+%    - NOMENCLATURA UFFICIALE: Scrivere SEMPRE "CORSO DI STUDIO" e MAI "Corso di Laurea"!
+%    - NOME IN COPERTINA: Inserire UNICAMENTE il Nome e Cognome dello studente (e Matricola),
+%      SENZA premettere la parola "Candidato", "Candidata" o "Tesi di Laurea di:".
+%
+% 2. METODOLOGIA DI LAVORO IN 6 FASI:
+%    1) Definizione della domanda di ricerca (fase più lunga e difficile, vale almeno 6 su 10!).
+%    2) Definizione degli esperimenti e delle metriche per rispondere alla domanda senza ambiguità.
+%    3) Implementazione del codice (il codice è uno STRUMENTO EPISTEMICO per rispondere alla domanda,
+%       non un prodotto commerciale fine a se stesso).
+%    4) Sperimentazione (raccolta dati riproducibile).
+%    5) Analisi critica dei risultati.
+%    6) Scrittura della tesi (Cap 4 e 5 per primi, Cap 1 e Abstract per ultimi).
+%    - GESTIONE DELL'ANSIA E FALLBACK: Fissa sempre scadenze con piani di riserva espliciti e brutali
+%      (es. "Implementazione entro data X; fallback: uso libreria open-source e rimodulazione domanda").
+%
+% 3. ORDINE CRONOLOGICO RACCOMANDATO PER LA SCRITTURA:
+%    - Non iniziare a scrivere la tesi dal Capitolo 1!
+%    - PERCHÉ? Spesso si sprecano troppo tempo ed energie sull'introduzione prima di sapere
+%      cosa si farà davvero, lasciando poco tempo per le parti importanti (codice e risultati)
+%      e fallendo lo SCOPE (il perimetro/confine degli obiettivi effettivamente realizzabili).
+%    - FASE 1: Appena completato il lavoro di tesi/tirocinio/programmazione,
+%              scrivere subito i Capitoli 4 (Implementazione) e 5 (Risultati).
+%              È il momento in cui dettagli tecnici, scelte di design, metriche
+%              e grafici sono più nitidi e concreti.
+%    - FASE 2: Scrivere il Capitolo 3 (Progettazione/Architettura del sistema)
+%              e il Capitolo 2 (Background teorico e stato dell'arte).
+%    - FASE 3: Scrivere il Capitolo 6 (Conclusioni e sviluppi futuri).
+%    - FASE 4 (PER ULTIMO): Scrivere il Capitolo 1 (Introduzione) e il Sommario/
+%              Abstract. Solo quando le conclusioni sono state tratte e il lavoro
+%              è completamente definito si può introdurre l'opera con precisione.
+%
+% 3. REQUISITO BIBLIOGRAFICO FONDAMENTALE:
+%    - La tesi DEVE includere ALMENO 20 CITAZIONI BIBLIOGRAFICHE autorevoli.
+%    - Consultare il Capitolo 2 per la guida dettagliata su come citare.
+%
+% 4. ISTRUZIONI DI COMPILAZIONE (da terminale):
+%    - Con latexmk (automatico, consigliato):
+%        latexmk -pdf main.tex
+%    - Con pdflatex + biber (sequenza manuale completa):
+%        pdflatex main.tex
+%        biber main
+%        pdflatex main.tex
+%        pdflatex main.tex
+%    - Visualizzare il file PDF generato:
+%        xdg-open main.pdf   (su Linux)
+%        open main.pdf       (su macOS)
+% ============================================================================
+
+\documentclass[12pt, a4paper, oneside]{book}
+
+% Per generazione PDF/A conforme ai requisiti di archiviazione accademica
+\usepackage[a-2b]{pdfx}
+
+% Pacchetti di base
+\usepackage{caption}
+\captionsetup[table]{skip=10pt, belowskip=-5pt}
+\captionsetup[figure]{skip=10pt, belowskip=-5pt}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[italian]{babel}
+\usepackage[left=2.5cm, right=2.5cm, top=3cm, bottom=3cm]{geometry}
+\usepackage{indentfirst}
+\usepackage{enumitem}
+\setlist{itemsep=0pt, parsep=0pt, topsep=5pt}
+\raggedbottom
+\usepackage[skip=10pt]{parskip}
+
+% Formattazione titoli dei capitoli
+\usepackage{titlesec}
+\titleformat{\chapter}[display]{\normalfont\huge\bfseries\raggedright}{Capitolo \thechapter}{10pt}{\Huge}
+\titlespacing*{\chapter}{0pt}{0pt}{20pt}
+
+% Pacchetti per grafica e matematica
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{float}
+
+% Pacchetti per formattazione del testo
+\usepackage{setspace}
+\usepackage{ragged2e}
+\usepackage{afterpage}
+\usepackage[bottom]{footmisc}
+
+% Pacchetti per tabelle professionali
+\usepackage{tabularx}
+\usepackage{array}
+\usepackage{booktabs}
+\usepackage[table]{xcolor}
+
+% Pacchetti per listati di codice sorgente
+\usepackage{listings}
+
+\definecolor{codebg}{rgb}{0.96,0.96,0.96}
+\definecolor{commentgreen}{rgb}{0.0,0.5,0.0}
+\definecolor{keywordblue}{rgb}{0.0,0.0,0.85}
+\definecolor{stringred}{rgb}{0.7,0.1,0.1}
+
+\lstdefinestyle{codestyle}{
+    backgroundcolor=\color{codebg},
+    commentstyle=\color{commentgreen}\itshape, 
+    keywordstyle=\color{keywordblue}\bfseries, 
+    stringstyle=\color{stringred},
+    numberstyle=\tiny\color{gray},      
+    basicstyle=\ttfamily\small,         
+    breakatwhitespace=false,         
+    breaklines=true,
+    captionpos=t,
+    keepspaces=true,                 
+    numbers=left,
+    numbersep=10pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=4,
+    frame=single,
+    rulecolor=\color{lightgray}
+}
+\lstset{style=codestyle}
+\renewcommand{\lstlistingname}{Codice}
+\renewcommand{\lstlistlistingname}{Elenco dei codici}
+
+% Pacchetti per collegamenti ipertestuali e riferimenti intelligenti
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=black,
+    citecolor=blue!70!black,
+    urlcolor=blue!70!black
+}
+\usepackage{cleveref}
+
+% Configurazione cleveref in italiano
+\crefname{figure}{Fig.}{Fig.}
+\Crefname{figure}{Figura}{Figure}
+\crefname{table}{Tab.}{Tab.}
+\Crefname{table}{Tabella}{Tabelle}
+\crefname{equation}{Eq.}{Eq.}
+\Crefname{equation}{Equazione}{Equazioni}
+\crefname{listing}{Listing}{Listing}
+\Crefname{listing}{Listing}{Listing}
+\crefname{chapter}{Cap.}{Cap.}
+\Crefname{chapter}{Capitolo}{Capitoli}
+\crefname{section}{Sez.}{Sez.}
+\Crefname{section}{Sezione}{Sezioni}
+\newcommand{\crefrangeconjunction}{, }
+
+% Profondità dell'indice
+\setcounter{tocdepth}{3}
+\setcounter{secnumdepth}{3}
+
+% Nuovi tipi di colonna centrata per tabelle tabularx
+\newcolumntype{C}{>{\centering\arraybackslash}X}
+
+% Configurazione intestazioni e numeri di pagina al centro in basso
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{0pt}
+
+% Spaziature figure e tabelle nel testo
+\setlength{\intextsep}{20pt}
+\setlength{\textfloatsep}{20pt}
+
+% Gestione bibliografia con BibLaTeX e Biber
+\usepackage[autostyle]{csquotes} 
+\usepackage[style=numeric,sorting=none,backend=biber]{biblatex}
+\addbibresource{biblio.bib}
+
+% Cartella immagini predefinita
+\graphicspath{{img/}}
+
+% Interlinea 1.5 come da standard di ateneo
+\setstretch{1.5}
+\renewcommand{\contentsname}{Indice}
+\addto\captionsitalian{\renewcommand{\figurename}{Figura}}
+\addto\captionsitalian{\renewcommand{\tablename}{Tabella}}
+
+% ============================================================================
+% INIZIO DOCUMENTO
+% ============================================================================
+\begin{document}
+
+% ----------------------------------------------------------------------------
+% FRONTESPIZIO (ANONIMIZZATO)
+% ----------------------------------------------------------------------------
+\hypersetup{pageanchor=false}
+\thispagestyle{empty}
+\begin{titlepage}
+    \begin{center}
+        \vspace{0.5cm}
+    
+        {\large \textbf{UNIVERSITÀ DEGLI STUDI [NOME ATENEO]}} \\
+        {\large \textbf{DIPARTIMENTO DI [NOME DIPARTIMENTO]}} \\
+        
+        \vspace{0.8cm}
+        
+        % ATTENZIONE: Usare SEMPRE "CORSO DI STUDIO" e MAI "Corso di Laurea"!
+        {\large CORSO DI STUDIO IN INFORMATICA}
+        
+        \vspace{1.5cm}
+    
+        % Sostituire img/logo_insu.jpeg con il logo ufficiale del proprio ateneo
+        \includegraphics[width=0.30\columnwidth]{img/logo_insu.jpeg}
+        
+        \vspace{1.2cm}
+        
+        {\LARGE \textbf{[TITOLO DELLA TESI:}}\\
+        \vspace{0.3cm}
+        {\LARGE \textbf{SOTTOTITOLO DESCRITTIVO DEL PROGETTO]}}
+        
+        \vspace{1.8cm}
+        
+        \begin{minipage}[t]{0.48\textwidth}
+            \raggedright
+            \textbf{Relatore:}\\
+            Chiar.mo Prof. Nome Cognome\\[0.4cm]
+            \textbf{Correlatore:} \textit{(opzionale)}\\
+            Dott. Nome Cognome
+        \end{minipage}
+        \hfill
+        \begin{minipage}[t]{0.48\textwidth}
+            \raggedleft
+            % ATTENZIONE: Inserire UNICAMENTE Nome, Cognome e Matricola.
+            % NON usare la dicitura "Candidato", "Candidata" o "Tesi di Laurea di:".
+            Nome Cognome\\[0.2cm]
+            Matricola: 123456
+        \end{minipage}
+    
+        \vfill
+        \centering
+        Anno Accademico 20XX/20XX
+    \end{center}
+\end{titlepage}
+\hypersetup{pageanchor=true}
+
+% Giustificazione del testo
+\justifying
+
+% ----------------------------------------------------------------------------
+% MATERIALE PRELIMINARE (FRONTMATTER)
+% ----------------------------------------------------------------------------
+\frontmatter
+
+% Abstract / Sommario
+\chapter*{Sommario}
+\markboth{Sommario}{Sommario}
+\addcontentsline{toc}{chapter}{Sommario}
+
+\begin{quote}
+\textbf{Nota per lo studente:} Il sommario (o abstract) è una sintesi autonoma dell'intera tesi di lunghezza compresa tra le 200 e le 400 parole. 
+Deve contenere in forma concisa:
+\begin{enumerate}
+    \item Il \textbf{contesto} e il \textbf{problema} affrontato;
+    \item L'\textbf{obiettivo} del progetto e la motivazione;
+    \item La \textbf{metodologia} e le tecnologie adottate;
+    \item I \textbf{principali risultati} quantitativi e qualitativi ottenuti;
+    \item Le \textbf{conclusioni} e il valore aggiunto del contributo.
+\end{enumerate}
+\textbf{Regola d'oro:} Scrivere il sommario per \textbf{ULTIMO}, solo dopo aver concluso e validato tutti i capitoli della tesi!
+\end{quote}
+
+[Inserire qui il testo del sommario in lingua italiana...]
+
+\vspace{1.5cm}
+
+\section*{Abstract}
+\begin{quote}
+\textbf{Note for the student:} English translation of the Italian summary. Essential for international indexing and bachelor's degree archiving.
+\end{quote}
+
+[Insert English abstract translation here...]
+
+\cleardoublepage
+
+% Ringraziamenti (opzionali)
+\chapter*{Ringraziamenti}
+\markboth{Ringraziamenti}{Ringraziamenti}
+\addcontentsline{toc}{chapter}{Ringraziamenti}
+
+\textit{(Sezione opzionale: riservata ai ringraziamenti a relatori, correlatori, docenti, colleghi di laboratorio, familiari e persone care che hanno supportato il percorso di studi e lo svolgimento della tesi.)}
+
+[Inserire qui i ringraziamenti...]
+
+\cleardoublepage
+
+% Indici del documento
+\tableofcontents
+\newpage
+\listoftables      % Indice delle tabelle
+\newpage
+\listoffigures     % Indice delle figure
+\newpage
+\lstlistoflistings % Indice dei listati di codice
+\cleardoublepage
+
+% ----------------------------------------------------------------------------
+% CORPO PRINCIPALE (MAINMATTER)
+% ----------------------------------------------------------------------------
+\mainmatter
+\setcounter{chapter}{0} 
+
+\include{Cap1_introduzione}
+\include{Cap2_background}
+\include{Cap3_sistema}
+\include{Cap4_implementazione}    
+\include{Cap5_risultati}
+\include{Cap6_conclusioni}
+
+% ----------------------------------------------------------------------------
+% PARTE FINALE (BACKMATTER)
+% ----------------------------------------------------------------------------
+\backmatter
+
+% Bibliografia con inclusione automatica nell'indice
+\printbibliography[heading=bibintoc, title={Bibliografia}]
+
+\end{document}

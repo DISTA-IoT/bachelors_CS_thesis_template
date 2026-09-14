@@ -1,0 +1,149 @@
+% ============================================================================
+% CAPITOLO 1 — INTRODUZIONE
+% ============================================================================
+\chapter{Introduzione}
+\label{cap:introduzione}
+
+% ----------------------------------------------------------------------------
+% NOTA METODOLOGICA FONDAMENTALE SULLA STESURA
+% ----------------------------------------------------------------------------
+\vspace{-0.3cm}
+\noindent\rule{\textwidth}{1.2pt}
+\vspace{0.1cm}
+
+\textbf{\large REGOLE DI STESURA PER LO STUDENTE — LEGGERE PRIMA DI SCRIVERE:}
+\vspace{0.2cm}
+\begin{enumerate}
+    \item \textbf{SCRIVERE QUESTO CAPITOLO PER ULTIMO:} Non iniziare MAI la scrittura della tesi dall'Introduzione! L'Introduzione e il Sommario vanno redatti \textbf{solo alla fine}, dopo aver completato le Conclusioni (\Cref{cap:conclusioni}).
+    \item \textbf{PERCHÉ? (TEMPO, ENERGIE E RISCHIO DI FALLIRE LO SCOPE):}
+    \begin{itemize}
+        \item \emph{Trappola del tempo e delle energie:} Molti studenti commettono l'errore di iniziare dall'introduzione, spendendo settimane a limare frasi generiche. Questo consuma le energie migliori e lascia poco tempo per le parti cruciali: l'architettura, la scrittura del codice, l'esecuzione dei test e l'analisi rigorosa dei dati.
+        \item \emph{Cos'è lo SCOPE (perimetro del progetto)?} In informatica e nell'ingegneria del software, lo \textbf{scope} definisce i confini esatti del lavoro: cosa il sistema fa, cosa deliberatamente \textbf{non} fa, quali requisiti sono inclusi e quali vincoli sono fissati.
+        \item \emph{Il rischio di fallire lo scope:} All'inizio del lavoro non puoi sapere con certezza cosa funzionerà, quali ostacoli tecnici incontrerai o dove arriverà effettivamente il codice. Se scrivi l'introduzione all'inizio, rischi di promettere obiettivi che non realizzerai o di sbagliare il perimetro (scope) del progetto. Scrivendola alla fine, l'introduzione fotograferà fedelmente ciò che hai realmente costruito e validato.
+    \end{itemize}
+    \item \textbf{ORDINE DI STESURA CONSIGLIATO:}
+    \begin{itemize}
+        \item \textbf{Fase 1:} Capitoli \ref{cap:Implementazione} (Implementazione) e \ref{cap:risultati} (Risultati/Validazione);
+        \item \textbf{Fase 2:} Capitolo \ref{cap:sistema} (Progettazione) e Capitolo \ref{cap:background} (Background/Stato dell'Arte);
+        \item \textbf{Fase 3:} Capitolo \ref{cap:conclusioni} (Conclusioni);
+        \item \textbf{Fase 4 (Finale):} Capitolo \ref{cap:introduzione} (Introduzione) e Sommario/Abstract.
+    \item \textbf{ALLINEAMENTO METODOLOGICO (PROF. JESÚS CEVALLOS):}
+    Questo template e le linee guida didattiche qui esposte rispecchiano fedelmente le preferenze scientifiche e metodologiche del \textbf{Prof.~Jesús Cevallos (docente di Probabilità e Statistica per l'Informatica)}, coerenti con la sua materia e con i suoi criteri di ricerca epistemica e statistica. 
+    \textbf{Attenzione:} Altri docenti e relatori di altre aree dell'informatica potrebbero avere convenzioni, specifiche e preferenze metodologiche differenti. È sempre buona prassi concordare l'impostazione e la struttura della tesi con il proprio relatore di riferimento.
+\end{enumerate}
+
+\noindent\rule{\textwidth}{1.2pt}
+\vspace{0.4cm}
+
+L'introduzione è il biglietto da visita della tesi: deve catturare l'interesse della commissione e del lettore, inquadrare chiaramente il problema all'interno del panorama informatico moderno e chiarire senza ambiguità il valore del contributo scientifico o ingegneristico sviluppato.
+
+Di seguito viene illustrata la suddivisione standard raccomandata per questo capitolo.
+
+
+% ============================================================================
+\section{Contesto e Motivazione}
+\label{sec:contesto-motivazione}
+% ============================================================================
+
+\textbf{Cosa scrivere in questa sezione:}
+\begin{itemize}
+    \item \textbf{Inquadramento generale:} Descrivere il settore di riferimento (ad esempio: intelligenza artificiale, sicurezza informatica, sistemi distribuiti, ingegneria del software, Internet of Things).
+    \item \textbf{Rilevanza applicativa o scientifica:} Spiegare perché questo ambito è cruciale oggi (esigenze industriali, aumento delle minacce, normative emergenti, requisiti di affidabilità).
+    \item \textbf{Riferimenti bibliografici iniziali:} Già nell'introduzione è opportuno citare standard internazionali o articoli chiave per dare autorevolezza alle affermazioni (ad esempio: normative tecniche come CENELEC EN 50716~\cite{en50716} per il software critico o studi recenti sulla sicurezza informatica~\cite{soderi2023railway}).
+\end{itemize}
+
+\textit{Esempio di apertura:}\\
+Nei moderni sistemi informatici distribuiti e cyber-fisici, la sicurezza e la trasparenza decisionale sono diventate requisiti imprescindibili. Come evidenziato dai recenti standard internazionali di settore~\cite{en50716, soderi2023railway}, non è più sufficiente che un algoritmo fornisca un risultato corretto: è necessario garantire che il processo di elaborazione sia verificabile, tracciabile e resiliente ad attacchi malevoli come i \emph{False Data Injection Attacks} (FDIA)~\cite{liu2009false}. In questo contesto si inserisce la presente tesi di laurea...
+
+
+% ============================================================================
+\section{Definizione del Problema, Ipotesi e Obiettivi}
+\label{sec:problema-obiettivi}
+% ============================================================================
+
+\textbf{Guida per lo studente — Cos'è davvero una ``Tesi''?}
+\begin{itemize}
+    \item \textbf{La tesi come affermazione (o negazione) specifica:} 
+    Stando alla definizione accademica e scientifica, una \emph{tesi} non è un semplice argomento o una rassegna generica, ma è una \textbf{proposizione specifica che viene dimostrata} attraverso il lavoro svolto. Può essere un'affermazione oppure una negazione.
+    \begin{itemize}
+        \item \emph{Esempio di affermazione specifica:} ``\emph{È possibile creare una libreria che esegua la migrazione di modelli da PyTorch a Rust senza incrementare la superficie di attacco del codice di oltre il 15\%, misurato in termini di Attack Success Rate (ASR) a fronte degli attacchi A, B e C.}''
+        \item \emph{Esempio di negazione:} ``\emph{Non è possibile garantire la consistenza forte in questo protocollo distribuito mantenendo una latenza inferiore a $X$\,ms in presenza di partizioni di rete.}''
+    \end{itemize}
+    \item \textbf{Il valore della specificità:} Più l'affermazione è circoscritta, quantitativa e precisa, minore è il rischio che la tesi sia falsa, generica o non dimostrabile. La specificità è il principale alleato dello studente per consentire una dimostrazione rigorosa con dati sperimentali.
+    \item \textbf{Tesi $\neq$ Titolo della tesi:} Attenzione a non confondere la tesi con il titolo del documento. Il titolo è spesso sintetico o tematico (es. ``\emph{Studio e sviluppo di un convertitore PyTorch-Rust}''); la \emph{tesi} è la specifica risposta scientifica/ingegneristica che il lavoro intende convalidare.
+    \item \textbf{L'Ipotesi (la domanda di ricerca vale 6 su 10):}
+    La tesi è sempre la risposta a un'ipotesi di partenza, ovvero a una domanda di ricerca (es. ``\emph{È possibile ottenere il risultato $X$ rispettando il vincolo $Y$?}''):
+    \begin{quote}
+    \textbf{Regola aurea:} Su una scala da 1 a 10, formulare la domanda corretta \textbf{vale almeno 6}. Una domanda formulata male vanifica mesi di programmazione.
+    \end{quote}
+    Per porre una domanda sensata, non banale e significativa, è indispensabile \textbf{fare ricerca preliminare, contaminarsi con la letteratura, capire cosa sta succedendo nello stato dell'arte} e individuare dove risiede il valore reale.
+    \item \textbf{Fattibilità nei tempi e con le risorse:} La domanda di ricerca deve essere commisurata al perimetro di una tesi triennale: deve essere risolvibile con le risorse di calcolo a disposizione e nei tempi previsti, evitando quesiti irrealizzabili.
+\end{itemize}
+
+\vspace{0.3cm}
+\textbf{Articolazione concreta degli obiettivi nel testo della tesi:}
+\begin{enumerate}
+    \item \textbf{Domanda di ricerca (Research Question):} Formulare chiaramente l'interrogativo fondamentale;
+    \item \textbf{Tesi sostenuta:} Esplicitare l'affermazione specifica che il lavoro intende dimostrare;
+    \item \textbf{Obiettivi specifici (bullet points):} Elencare i passi ingegneristici concreti per dimostrarla:
+    \begin{enumerate}
+        \item Studio dello stato dell'arte e analisi dei requisiti formali;
+        \item Progettazione dell'architettura software modulare;
+        \item Implementazione del prototipo in linguaggio Python/C++/Rust;
+        \item Definizione del piano sperimentale e delle metriche di validazione;
+        \item Analisi critica dei risultati ottenuti e verifica dell'ipotesi iniziale.
+    \end{enumerate}
+\end{enumerate}
+
+
+% ============================================================================
+\section{Metodologia, Fasi del Lavoro e Gestione dei Fallback}
+\label{sec:metodologia}
+% ============================================================================
+
+\textbf{Guida per lo studente — Il Ruolo del Codice e il Metodo di Lavoro:}
+
+\subsection*{Il codice come strumento epistemico (non come prodotto fine a se stesso)}
+Una domanda classica degli studenti è: \emph{<<Quanto peso date al codice o ai risultati rispetto al testo della tesi?>>}.
+La risposta fondamentale è:
+\begin{quote}
+Il codice è importante unicamente perché ci permette di \textbf{rispondere alla domanda di ricerca con sicurezza e con zero ambiguità}. 
+È uno \textbf{strumento epistemico} (uno strumento per produrre conoscenza e verità scientifica), \textbf{NON} un prodotto di ingegneria commerciale fine a se stesso.
+\end{quote}
+In questo senso, il peso del codice e dei risultati è già interamente racchiuso in quel \textbf{``6 su 10''} assegnato alla formulazione della domanda! Non occorre ostinarsi a riscrivere da zero architetture titaniche: è molto più efficace prendere gli strumenti e i framework esistenti, comprendere cosa permettono di fare e capire quale domanda significativa possiamo indagare e quale esperimento è realmente fattibile con ciò che abbiamo a disposizione.
+
+\subsection*{La pipeline di lavoro in 6 fasi}
+Il percorso corretto per realizzare la tesi si articola in sei fasi sequenziali:
+\begin{enumerate}
+    \item \textbf{Definizione della domanda di ricerca:} È la fase \textbf{più lunga e più difficile} dell'intero percorso, ed è fisiologico che lo sia. Non allarmarti se richiede tempo e fatica: una volta trovata la domanda giusta, le fasi successive sono già ampiamente instradate e il lavoro diventa molto più meccanico;
+    \item \textbf{Definizione degli esperimenti e delle metriche:} Stabilire con precisione quali test eseguire e quali parametri misurare per rispondere alla domanda senza ambiguità;
+    \item \textbf{Implementazione:} Scrivere il codice strettamente necessario per condurre gli esperimenti;
+    \item \textbf{Sperimentazione:} Eseguire i test e raccogliere i log e i dati in modo riproducibile;
+    \item \textbf{Analisi dei risultati:} Interpretare criticamente i dati raccolti;
+    \item \textbf{Scrittura della tesi:} Redigere il documento (ricordando di scrivere prima i Capitoli \ref{cap:Implementazione} e \ref{cap:risultati}, e l'Introduzione per ultima).
+\end{enumerate}
+
+\subsection*{Gestione dell'ansia: scadenze e piani di Fallback}
+La redazione di una tesi può generare ansia da prestazione o timore di non farcela entro i tempi di laurea. La strategia ingegneristica per neutralizzare l'ansia è la \textbf{pianificazione con fallback espliciti (anche brutali)}:
+\begin{itemize}
+    \item Fissa scadenze precise per ciascuna fase;
+    \item Associa a ciascuna scadenza un piano di riserva categorico. 
+    \item \emph{Esempio pratico:} \textbf{<<Implementazione dell'algoritmo proprietario entro il giorno $X$; se entro tale data il codice non converge, FALLBACK: si adotta la libreria open-source esistente e si adatta la domanda di ricerca alla valutazione comparativa delle prestazioni.>>}
+\end{itemize}
+Avere sempre un fallback prefissato toglie la paura del fallimento: qualunque imprevisto si verifichi, il percorso verso la conclusione della tesi è già tracciato e protetto.
+
+
+% ============================================================================
+\section{Struttura del Documento}
+\label{sec:struttura-tesi}
+% ============================================================================
+
+La sezione conclusiva dell'introduzione descrive sinteticamente l'organizzazione del documento, fornendo una guida alla lettura per capitoli mediante riferimenti incrociati con il comando \texttt{\textbackslash Cref\{\dots\}}:
+
+\begin{itemize}
+    \item \textbf{\Cref{cap:background} --- Stato dell'arte e background teorico:} Introduce i fondamenti teorici del dominio affrontato, esamina le soluzioni presenti in letteratura e illustra le regole rigorose per la gestione delle citazioni bibliografiche (con il vincolo di inserire almeno 20 fonti autorevoli).
+    \item \textbf{\Cref{cap:sistema} --- Progettazione del sistema:} Presenta l'analisi dei requisiti, l'architettura generale del sistema software e il modello matematico/concettuale alla base delle decisioni.
+    \item \textbf{\Cref{cap:Implementazione} --- Implementazione:} Descrive le tecnologie adottate, l'ambiente di sviluppo, la struttura modulare del codice e le scelte ingegneristiche più significative.
+    \item \textbf{\Cref{cap:risultati} --- Validazione e risultati sperimentali:} Espone la metodologia di test, le metriche quantitative adottate, i grafici sperimentali e la discussione critica dei dati raccolti.
+    \item \textbf{\Cref{cap:conclusioni} --- Conclusioni e sviluppi futuri:} Riassume i risultati conseguiti, evidenzia i limiti riscontrati nella soluzione e propone future direzioni di ricerca ed evoluzione.
+\end{itemize}

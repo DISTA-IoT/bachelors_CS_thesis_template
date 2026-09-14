@@ -1,0 +1,17 @@
+# LaTeX compilation artifacts
+*.aux
+*.bcf
+*.blg
+*.bbl
+*.fdb_latexmk
+*.fls
+*.lof
+*.log
+*.lol
+*.lot
+*.out
+*.run.xml
+*.synctex.gz
+*.toc
+pdfa.xmpi
+main.pdf
