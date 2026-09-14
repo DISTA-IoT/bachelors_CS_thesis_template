@@ -54,12 +54,12 @@ Ogni figura inserita nella tesi deve:
     \item \textbf{Essere sempre citata nel testo} con \texttt{\textbackslash Cref\{fig:\dots\}} o \texttt{\textbackslash ref\{fig:\dots\}}. Una figura mai citata nel testo è un grave errore metodologico.
 \end{enumerate}
 
-La \Cref{fig:architettura-esempio} illustra lo schema a blocchi dell'architettura proposta, evidenziando il flusso continuo tra la sorgente dei dati, il modulo di inferenza e il componente decisionale.
+La \Cref{fig:architettura-esempio} illustra a titolo di esempio uno schema architetturale e di pipeline (sostituibile con il diagramma UML o architetturale specifico della tesi), evidenziando le fasi di acquisizione, pre-elaborazione, estrazione delle feature e classificazione/decisione.
 
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=0.85\textwidth]{placeholder_figura.png}
-    \caption{Diagramma architetturale di alto livello del sistema proposto. Il componente centrale elabora le osservazioni sensoriali e calcola la politica di controllo ottima.}
+    \includegraphics[width=0.92\textwidth]{placeholder_figura.png}
+    \caption{Esempio di schema architetturale e pipeline di elaborazione a blocchi (ispirato allo standard di riconoscimento e classificazione, Wikimedia Commons). Nel lavoro di tesi, sostituire questa figura con l'architettura specifica del proprio sistema o software.}
     \label{fig:architettura-esempio}
 \end{figure}
 
@@ -68,16 +68,16 @@ La \Cref{fig:architettura-esempio} illustra lo schema a blocchi dell'architettur
 \label{sec:esempi-flowchart}
 % ----------------------------------------------------------------------------
 
-Accanto ai diagrammi architetturali (che mostrano la struttura statica dei moduli), i \textbf{diagrammi di flusso (flowchart)} sono fondamentali per rappresentare visivamente la dinamica temporale, le diramazioni condizionali (\texttt{if-else}) e la sequenza delle operazioni. 
+Accanto ai diagrammi architetturali (che mostrano la struttura statica dei moduli o delle pipeline), i \textbf{diagrammi di flusso (flowchart)} sono fondamentali per rappresentare visivamente la dinamica temporale, le diramazioni condizionali (\texttt{if-else}) e la sequenza delle operazioni decisionali. 
 
-Un diagramma di flusso chiaro \textbf{sostituisce con enorme efficacia lunghe pagine di codice}, permettendo al lettore di cogliere la logica dell'algoritmo in pochi secondi.
+Un diagramma di flusso chiaro ed elegante \textbf{sostituisce con enorme efficacia lunghe pagine di codice sorgente}: permette al docente e alla commissione di cogliere la logica algoritmica in pochi istanti, senza perdersi nei dettagli implementativi di basso livello.
 
-La \Cref{fig:diagramma-flusso} illustra il flusso logico decisionale eseguito a ogni passo temporale.
+La \Cref{fig:diagramma-flusso} riporta un classico diagramma di flusso a norma ISO, illustrando l'uso standard dei blocchi di inizio/fine (ovali), di controllo condizionale (rombi di decisione con rami \textit{Yes/No}) e di elaborazione/azione (rettangoli).
 
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=0.75\textwidth]{placeholder_flusso.png}
-    \caption{Diagramma di flusso logico per ciascun timestep. Evidenzia la diramazione condizionale a fronte del superamento della soglia di anomalia e la convergenza verso la selezione dell'azione ottima.}
+    \includegraphics[width=0.45\textwidth]{placeholder_flusso.png}
+    \caption{Esempio canonico di diagramma di flusso decisionale conforme agli standard grafici di processo (Wikimedia Commons). Nella tesi, sostituire con il flusso decisionale o computazionale del proprio algoritmo.}
     \label{fig:diagramma-flusso}
 \end{figure}
 
