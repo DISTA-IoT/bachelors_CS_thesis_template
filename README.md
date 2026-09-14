@@ -121,5 +121,13 @@ Il codice sorgente in una tesi di laurea non è fine a se stesso né è un prodo
 
 ---
 
-## ⚖️ Note per Altri Relatori
-Questo template e le linee guida incorporate riflettono la visione metodologica del **Prof. Jesús Cevallos** per le tesi del Corso di Studio in Informatica dell'Università degli Studi dell'Insubria. Gli studenti che svolgono la tesi con altri docenti relatori dovrebbero verificare eventuali preferenze o specifiche editoriali del proprio relatore.
+## ⚖️ Disclaimer
+Questo template e le linee guida incorporate riflettono la visione metodologica del **dott. Jesús Cevallos** per le tesi del Corso di Studio in Informatica dell'Università degli Studi dell'Insubria. Gli studenti che svolgono la tesi con altri docenti relatori dovrebbero verificare eventuali preferenze o specifiche editoriali del proprio relatore.
+
+---
+
+## 🔗 Utili risorse esterne
+
+- [Insubria](https://www.uninsubria.it/)
+- [LaTeX](https://www.latex-project.org/)
+- [arXiv](https://arxiv.org/)
