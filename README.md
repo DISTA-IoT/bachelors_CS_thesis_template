@@ -1,7 +1,7 @@
 # Template di Tesi di Laurea Triennale in Informatica
 ### Università degli Studi dell'Insubria — Dipartimento di Scienze Teoriche ed Applicate (DiSTA)
 
-Modello ufficiale e guida metodologica per la redazione della tesi di laurea in **Informatica** (Corso di Studio in Informatica), allineato alle preferenze di ricerca e didattiche del **Prof. Jesús Cevallos** (docente di *Probabilità e Statistica per l'Informatica*).
+Modello e guida metodologica per la redazione della tesi di laurea in **Informatica** (Corso di Studio in Informatica), allineato alle preferenze di ricerca e didattiche del **Prof. Jesús Cevallos** (docente di *Probabilità e Statistica per l'Informatica*).
 
 ---
 
